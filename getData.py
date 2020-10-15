@@ -24,15 +24,16 @@ def get14(country='slovenia', populacija=2000000):
     for el in res.json():
         #print(el['Date'] + ": "+str(el['Cases']))
         cases.append(el['Cases'])
-    cases.append(cases[-1]+700)
+  #  cases.append(cases[-1]+700)
     zadnij14=cases[-14:]
     stPrimerov14 = zadnij14[-1]-zadnij14[0]
+    print("Zadnja meritev %s" % (cases[-1]-cases[-2]))
     return stPrimerov14/populacija*100000
 
 countryes={'slovenia': 2000000,'croatia':4058000, 'austria':8859000,'italy':60360000}
 
-for country, pop in countryes:
-    print('con'+ country)
-    print('pop '+ str(pop))
+for key  in countryes:
+    print('con   '+ key)
+    print('pop '+ str(countryes[key]))
 
-    #print('Za državo %s je 14 dnevna incidenca %s' % (country, get14(country)))
+    print('Za državo %s je 14 dnevna incidenca %s' % (key, get14(key, countryes[key])))
